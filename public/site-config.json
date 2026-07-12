@@ -1,0 +1,97 @@
+{
+  "appointmentTypes" : [
+    {
+      "autoConfirm" : true,
+      "availabilityHorizonDays" : 30,
+      "durationMinutes" : 30,
+      "id" : "intro-call",
+      "location" : {
+        "details" : "",
+        "mode" : "google_meet"
+      },
+      "name" : "30 Min Meeting",
+      "slug" : "intro-call",
+      "summary" : "A focused first conversation.",
+      "weeklyHours" : [
+        {
+          "weekday" : 2,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 990,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        },
+        {
+          "weekday" : 3,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 990,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        },
+        {
+          "weekday" : 4,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 990,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        },
+        {
+          "weekday" : 5,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 990,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        },
+        {
+          "weekday" : 6,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 960,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "copy" : {
+    "privacyNote" : ""
+  },
+  "encryption" : {
+    "keyID" : "booking-key-4dd0911f-75de-49db-9023-360071558117",
+    "publicKeyJwk" : {
+      "crv" : "P-256",
+      "kty" : "EC",
+      "x" : "CRvd_pTL2b4hqIz1KbE9Ln-2UJj2ayJ0C6z3CDT_3So",
+      "y" : "JX5jfEDmnQdstznUkU9bDnd-yKnQJq-QFHDkMVBAHVk"
+    }
+  },
+  "inbox" : {
+    "id" : "inbox-4dd0911f-75de-49db-9023-360071558117",
+    "url" : "https://booking-relay-ifspu8y7z-ewujo.vercel.app"
+  },
+  "profile" : {
+    "pageSubtitle" : "Choose a time and send a request.",
+    "pageTitle" : "Book time with Matt",
+    "publicName" : "Matt",
+    "timeZone" : "America/Los_Angeles"
+  },
+  "share" : {
+    "id" : "intro-call"
+  },
+  "theme" : {
+    "accentColor" : "#0F766E",
+    "backgroundColor" : "#F7F3EA",
+    "textColor" : "#171717"
+  },
+  "version" : {
+    "fingerprint" : "fbfa60a5b87489e6b10c9f78249b614dbe0d38c4fb11714fae98ee9c50971ad0"
+  }
+}
