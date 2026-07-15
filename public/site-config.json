@@ -75,7 +75,7 @@
   },
   "inbox" : {
     "id" : "inbox-4dd0911f-75de-49db-9023-360071558117",
-    "url" : "https://booking-relay-m9x4q1qbt-ewujo.vercel.app"
+    "url" : "https://booking-relay-ewujo.vercel.app"
   },
   "profile" : {
     "pageSubtitle" : "Choose a time and send a request.",
@@ -92,6 +92,6 @@
     "textColor" : "#171717"
   },
   "version" : {
-    "fingerprint" : "3b1a42f84a766b6bdb71b443100195c0384e1232543738ea7756b83e5e70b267"
+    "fingerprint" : "65385929c61b418fbb6b3fcbd091bb532c3581a7fce5e27e0989244c56f59b8a"
   }
 }
