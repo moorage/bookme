@@ -14,11 +14,15 @@
     },
     {
       "path" : "assets/app.js",
-      "sha256" : "c1c4ccad582680e0a0ae4f253c486b9719031d0a608c7985032761d9067b2fac"
+      "sha256" : "090fd0e1b45ead0b742c322744cbca0d84c12383360ce2d7e89d006b46188f96"
     },
     {
       "path" : "assets/icons/README.md",
       "sha256" : "19313b9ba8a84b24464fdab02e2297864fafda00e3a1c8b7bcf2ad310aae50a4"
+    },
+    {
+      "path" : "assets/protocol.css",
+      "sha256" : "72e1e06ddc3682ef28390f9019eab863761cb05ef69cf68c5edd23910ec8759b"
     },
     {
       "path" : "assets/styles.css",
@@ -42,13 +46,13 @@
     },
     {
       "path" : "public/availability/slots.json",
-      "sha256" : "3e10c66b1c404b6092aa271314d51060c121d43144cd8a4da065119aee0db006"
+      "sha256" : "2b692961c5fd5f722310b787ad4ef5c6f4a2783e35b5fd02283b63b7e5c5ac04"
     },
     {
       "path" : "public/site-config.json",
       "sha256" : "412f0e1897b95b28eaaffbb310998937db9aa986621c082c0ad49cd29328e2b4"
     }
   ],
-  "fingerprint" : "803c6dacec2f7d8dc0d708f3833e814ee7c92e23e25e84994194b722dabc9d44",
+  "fingerprint" : "fe768912e3d79eb20e46e384d30e2a1d3cf181a5eb3bc3d984d21e1c6231df39",
   "version" : 1
 }

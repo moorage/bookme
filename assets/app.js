@@ -9,6 +9,8 @@ const state = {
   guestCount: 0,
 };
 
+const confirmationElements = ensureConfirmationStep();
+
 const elements = {
   appointmentLayout: document.querySelector("#appointment-layout"),
   appointmentList: document.querySelector("#appointment-list"),
@@ -33,7 +35,73 @@ const elements = {
   guestFields: document.querySelector("#guest-fields"),
   submitButton: document.querySelector("#submit-request"),
   formStatus: document.querySelector("#form-status"),
+  ...confirmationElements,
 };
+
+function ensureConfirmationStep() {
+  if (!document.querySelector("[data-booking-protocol-styles]")) {
+    const styles = document.createElement("link");
+    styles.rel = "stylesheet";
+    styles.href = "assets/protocol.css";
+    styles.dataset.bookingProtocolStyles = "";
+    document.head.append(styles);
+  }
+
+  const form = document.querySelector("#request-form");
+  let confirmationStep = document.querySelector("#confirmation-step");
+  if (!confirmationStep) {
+    confirmationStep = document.createElement("section");
+    confirmationStep.id = "confirmation-step";
+    confirmationStep.className = "confirmation-step";
+    confirmationStep.setAttribute("aria-labelledby", "confirmation-title");
+    confirmationStep.hidden = true;
+    confirmationStep.innerHTML = `
+      <div class="confirmation-hero">
+        <span class="confirmation-check" aria-hidden="true">&#10003;</span>
+        <p class="confirmation-kicker">Request sent</p>
+        <h2 id="confirmation-title" tabindex="-1">Thank you.</h2>
+        <p id="confirmation-body">Your request has been sent securely.</p>
+      </div>
+      <div class="confirmation-content">
+        <section aria-labelledby="confirmation-details-title">
+          <h3 id="confirmation-details-title">Your request</h3>
+          <dl class="confirmation-summary">
+            <div><dt>Event</dt><dd id="confirmation-event"></dd></div>
+            <div><dt>When</dt><dd id="confirmation-when"></dd></div>
+            <div><dt>Time zone</dt><dd id="confirmation-time-zone"></dd></div>
+            <div><dt>Sent to</dt><dd id="confirmation-email"></dd></div>
+            <div id="confirmation-guests-row" hidden><dt>Guests</dt><dd id="confirmation-guests"></dd></div>
+          </dl>
+        </section>
+        <section class="confirmation-next" aria-labelledby="confirmation-next-title">
+          <h3 id="confirmation-next-title">What happens next</h3>
+          <p id="confirmation-next-body"></p>
+          <p class="confirmation-notice"><strong>The meeting is not confirmed until the calendar invitation arrives.</strong></p>
+        </section>
+        <div class="confirmation-actions">
+          <button id="book-another-time" class="secondary-button" type="button">Book another time</button>
+          <p>You are all set for now. You can close this page.</p>
+        </div>
+      </div>
+    `;
+    form.insertBefore(confirmationStep, document.querySelector("#form-status"));
+  }
+  document.querySelector("#selected-title")?.setAttribute("tabindex", "-1");
+
+  return {
+    confirmationStep,
+    confirmationTitle: confirmationStep.querySelector("#confirmation-title"),
+    confirmationBody: confirmationStep.querySelector("#confirmation-body"),
+    confirmationEvent: confirmationStep.querySelector("#confirmation-event"),
+    confirmationWhen: confirmationStep.querySelector("#confirmation-when"),
+    confirmationTimeZone: confirmationStep.querySelector("#confirmation-time-zone"),
+    confirmationEmail: confirmationStep.querySelector("#confirmation-email"),
+    confirmationGuestsRow: confirmationStep.querySelector("#confirmation-guests-row"),
+    confirmationGuests: confirmationStep.querySelector("#confirmation-guests"),
+    confirmationNextBody: confirmationStep.querySelector("#confirmation-next-body"),
+    bookAnotherTime: confirmationStep.querySelector("#book-another-time"),
+  };
+}
 
 main().catch((error) => {
   showStatus(error.message || "Requests are not available right now. Try again later.", "error");
@@ -63,6 +131,7 @@ async function main() {
   elements.timeZoneSelect.addEventListener("change", handleTimeZoneChange);
   elements.backToTimes.addEventListener("click", showTimeStep);
   elements.addGuest.addEventListener("click", addGuestField);
+  elements.bookAnotherTime.addEventListener("click", startAnotherRequest);
   const linkedAppointment = linkedAppointmentType(appointmentTypes);
   if (linkedAppointment) {
     selectAppointment(linkedAppointment);
@@ -523,6 +592,20 @@ function formatSelectedSlot() {
   return slot ? `${formatDateHeading(state.selectedDateKey)} at ${formatTime(slot.startsAt)}` : "a time";
 }
 
+function formatConfirmationDate(isoString) {
+  return new Intl.DateTimeFormat(undefined, {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: state.selectedTimeZone,
+  }).format(new Date(isoString));
+}
+
+function formatConfirmationTime(slot) {
+  return `${formatTime(slot.startsAt)} - ${formatTime(slot.endsAt)}`;
+}
+
 function timeZoneLabel(zone) {
   const label = zone.replaceAll("_", " ");
   const parts = new Intl.DateTimeFormat(undefined, {
@@ -577,18 +660,51 @@ async function submitRequest(event) {
       throw new Error("Requests are not available right now. Try again later.");
     }
 
-    showStatus(state.selectedAppointment.autoConfirm ? "A calendar invite is on the way." : "You will get a confirmation after this time is reviewed.");
+    showConfirmation(plaintext, slot);
     elements.form.reset();
     clearGuestFields();
     state.selectedSlotID = "";
     elements.slotSelect.value = "";
-    renderTimes();
-    showTimeStep();
   } catch (error) {
     showStatus(error.message || "Requests are not available right now. Try again later.", "error");
   } finally {
     elements.submitButton.disabled = false;
   }
+}
+
+function showConfirmation(request, slot) {
+  const firstName = request.visitor.name.trim().split(/\s+/)[0];
+  const recipient = request.visitor.email;
+  const isAutomatic = state.selectedAppointment.autoConfirm;
+
+  document.body.classList.add("booking-complete");
+  elements.appointmentLayout.classList.add("confirmation-visible");
+  elements.form.classList.add("confirmation-state");
+  elements.confirmationStep.hidden = false;
+  elements.confirmationTitle.textContent = firstName ? `Thanks, ${firstName}.` : "Thank you.";
+  elements.confirmationBody.textContent = "Your private appointment request has been sent.";
+  elements.confirmationEvent.textContent = `${state.selectedAppointment.name} - ${state.selectedAppointment.durationMinutes} minutes`;
+  elements.confirmationWhen.textContent = `${formatConfirmationDate(slot.startsAt)} at ${formatConfirmationTime(slot)}`;
+  elements.confirmationTimeZone.textContent = timeZoneLabel(state.selectedTimeZone);
+  elements.confirmationEmail.textContent = recipient;
+  elements.confirmationGuestsRow.hidden = request.visitor.guestEmails.length === 0;
+  elements.confirmationGuests.textContent = request.visitor.guestEmails.join(", ");
+  elements.confirmationNextBody.textContent = isAutomatic
+    ? `The host's calendar app will check this time. If it is still available, a calendar invitation will be sent to ${recipient}.`
+    : `The host will review this time. If it is accepted, a calendar invitation will be sent to ${recipient}.`;
+  showStatus("");
+
+  elements.confirmationTitle.focus();
+  elements.confirmationTitle.scrollIntoView({ block: "start" });
+}
+
+function startAnotherRequest() {
+  document.body.classList.remove("booking-complete");
+  elements.appointmentLayout.classList.remove("confirmation-visible");
+  elements.form.classList.remove("confirmation-state");
+  elements.confirmationStep.hidden = true;
+  selectAppointment(state.selectedAppointment);
+  elements.selectedTitle.focus();
 }
 
 async function encryptRequest(plaintext, slot) {
