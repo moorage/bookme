@@ -1,0 +1,54 @@
+{
+  "files" : [
+    {
+      "path" : "AI_CUSTOMIZATION.md",
+      "sha256" : "513049b007f1ab487ec7ad6d4d6027568539cfbd6e8beb6b93a6b8f2ce90b7ef"
+    },
+    {
+      "path" : "README.md",
+      "sha256" : "7101185e7a80d68b49e4f6ee5bee958aaea3a9b507cb44f6be00fce80a1e9eac"
+    },
+    {
+      "path" : "assets/app-icon.png",
+      "sha256" : "b3a0a31b3c6832deb62e70c7f27b3ba5c330cb931a579108c0cf18c8a4517296"
+    },
+    {
+      "path" : "assets/app.js",
+      "sha256" : "c1c4ccad582680e0a0ae4f253c486b9719031d0a608c7985032761d9067b2fac"
+    },
+    {
+      "path" : "assets/icons/README.md",
+      "sha256" : "19313b9ba8a84b24464fdab02e2297864fafda00e3a1c8b7bcf2ad310aae50a4"
+    },
+    {
+      "path" : "assets/styles.css",
+      "sha256" : "fc6b642f1f37f9523b836315c5e993f135c82eb2463295b044608d1352cd0fef"
+    },
+    {
+      "path" : "content/appointment-types/intro-call.md",
+      "sha256" : "da4127135a8bd71eeea1707c78b23f02c1d3d96ec9272ecd67a74858f62c2739"
+    },
+    {
+      "path" : "content/default-copy.json",
+      "sha256" : "ad4dd589058841f038cd91008cb3226631294fed90e3d85d86623a96b7246955"
+    },
+    {
+      "path" : "content/profile.md",
+      "sha256" : "3a42850d369afc688e6a2a539f6344f591794a4c4012a3812068fb214adab90b"
+    },
+    {
+      "path" : "index.html",
+      "sha256" : "f59e7e8d8243b1e6f98eb9a1a4d5579cb1618eb4a25c0e8ffd97b5f25ec163b1"
+    },
+    {
+      "path" : "public/availability/slots.json",
+      "sha256" : "82802b27ebf771e38c8a87065a79e2d9a439e719f4186cd493f2e4632f4651f0"
+    },
+    {
+      "path" : "public/site-config.json",
+      "sha256" : "f5ddb526c9e733942cc508cd63f66dd18f2fa1e040f31aa435e80e72db056a5a"
+    }
+  ],
+  "fingerprint" : "b11371e60d28747cacf9aab4f630640f43738769ca2ae5f9949b1efe306a4d5f",
+  "version" : 1
+}
