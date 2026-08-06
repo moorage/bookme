@@ -10,7 +10,7 @@
         "mode" : "google_meet"
       },
       "name" : "30 Min Meeting",
-      "slug" : "intro-call",
+      "slug" : "30m",
       "summary" : "A focused first conversation.",
       "weeklyHours" : [
         {
@@ -59,6 +59,66 @@
           ]
         }
       ]
+    },
+    {
+      "autoConfirm" : true,
+      "availabilityHorizonDays" : 30,
+      "durationMinutes" : 45,
+      "id" : "new-meeting",
+      "location" : {
+        "details" : "",
+        "mode" : "google_meet"
+      },
+      "name" : "45 Minute Meeting",
+      "slug" : "45min",
+      "summary" : "45 mins on the calendar",
+      "weeklyHours" : [
+        {
+          "weekday" : 2,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 990,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        },
+        {
+          "weekday" : 3,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 990,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        },
+        {
+          "weekday" : 4,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 990,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        },
+        {
+          "weekday" : 5,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 990,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        },
+        {
+          "weekday" : 6,
+          "windows" : [
+            {
+              "endMinuteOfDay" : 990,
+              "startMinuteOfDay" : 540
+            }
+          ]
+        }
+      ]
     }
   ],
   "copy" : {
@@ -84,7 +144,7 @@
     "timeZone" : "America/Los_Angeles"
   },
   "share" : {
-    "id" : "intro-call"
+    "id" : "30m"
   },
   "theme" : {
     "accentColor" : "#0F766E",
@@ -92,6 +152,6 @@
     "textColor" : "#171717"
   },
   "version" : {
-    "fingerprint" : "1ab9f8bf37125c89e718725075ce536ca05bbea1ec6cd141d2ced8d78a387a3f"
+    "fingerprint" : "36a46c7e95f7abba9d8c914b53567630ff6c40cd313c6f726c135b73d624becf"
   }
 }
