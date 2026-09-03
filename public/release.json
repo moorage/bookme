@@ -46,13 +46,13 @@
     },
     {
       "path" : "public/availability/slots.json",
-      "sha256" : "44c24dcfb3d1b8390457aa36685bae9c900d20ca69aa15fc3f307ab7fec5684b"
+      "sha256" : "d9871693d40085bdb586e91da28e6dccf04dc68627cd2dd74a960f40ec0b4014"
     },
     {
       "path" : "public/site-config.json",
       "sha256" : "6a0641e31bab78f3e4c37fe47570f556c25093217452d646a829c4494c0b6e53"
     }
   ],
-  "fingerprint" : "368bd93b27e219f5b48263f3f1aaf30f99496e01628442576977ebb1ec7dac4a",
+  "fingerprint" : "53606dc24b3fda39fe5b5d8739600b5f3599626f6c70afd56eef2eca8d026ce2",
   "version" : 1
 }
